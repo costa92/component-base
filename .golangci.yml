@@ -42,14 +42,14 @@ output:
 linters-settings:
   # 错误检查
   errcheck:
-    # 检查类型错误
-    check-type-assertions: false
+   # 检查类型错误
+  check-type-assertions: false
 
-    # 检查空标识符
-    check-blank: true
+  # 检查空标识符
+  check-blank: true
 
-    # 忽略文件
-    ignore: fmt:.*,io/ioutil:^Read.*
+  # 忽略文件
+  ignore: fmt:.*,io/ioutil:^Read.*
 
   funlen:
     lines: 60
@@ -179,7 +179,7 @@ issues:
   exclude: /bin
   exclude-rules:
     # 设置某个目录的排除规则
-    - path: _test\.go
+    - path: _test.go
       linters:
         - gocyclo
         - errcheck

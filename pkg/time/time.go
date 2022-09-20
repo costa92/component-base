@@ -5,7 +5,6 @@ import (
 	"time"
 
 	sqldriver "database/sql/driver"
-
 )
 
 const (
