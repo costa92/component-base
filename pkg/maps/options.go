@@ -1,4 +1,4 @@
-package generals
+package maps
 
 type MapOptions[KEY int | string, VALUE string | float64 | int] map[KEY]VALUE
 

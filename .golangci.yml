@@ -120,15 +120,20 @@ linters-settings:
   unparam:
     check-exported: false
   gocritic:
-    enabled-checks:
     disabled-checks:
+      - commentedOutCode
+      - commentFormatting
     enabled-tags:
       - performance
+      - diagnostic
+      - opinionated
     settings: # settings passed to gocritic
       captLocal: # must be valid enabled check name
         paramsOnly: true
       rangeValCopy:
-        sizeThreshold: 32
+        sizeThreshold: 512
+      hugeParam:
+        sizeThreshold: 512
 
 linters:
   enable:

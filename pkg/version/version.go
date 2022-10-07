@@ -6,7 +6,6 @@ import (
 	"runtime"
 
 	"github.com/gosuri/uitable"
-
 )
 
 var (
@@ -42,8 +41,10 @@ func (info Info) String() string {
 
 // ToJSON returns the JSON string of version information.
 func (info Info) ToJSON() string {
-	s, _ := json.Marshal(info)
-
+	s, err := json.Marshal(info)
+	if err != nil {
+		panic(err)
+	}
 	return string(s)
 }
 

@@ -2,10 +2,12 @@ package verflag
 
 import (
 	"fmt"
-	"github.com/costa92/component-base/pkg/version"
-	flag "github.com/spf13/pflag"
 	"os"
 	"strconv"
+
+	flag "github.com/spf13/pflag"
+
+	"github.com/costa92/component-base/pkg/version"
 )
 
 type versionValue int

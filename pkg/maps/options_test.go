@@ -1,4 +1,4 @@
-package generals
+package maps
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 func Test_IntIntNewOptions(t *testing.T) {
 	m1 := MapOptions[int, int]{1: 2, 2: 4, 4: 8, 8: 16}
 	rs := NewOptions(m1)
-	//fmt.Println(rs.Keys())
+	// fmt.Println(rs.Keys())
 	key := rs.Option(1)
 	t.Log(key)
 	t.Log(rs.Options())

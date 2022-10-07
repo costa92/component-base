@@ -1,10 +1,9 @@
 package time
 
 import (
+	sqldriver "database/sql/driver"
 	"fmt"
 	"time"
-
-	sqldriver "database/sql/driver"
 )
 
 const (
@@ -16,7 +15,7 @@ type Time struct {
 }
 
 func (t Time) MarshalJSON() ([]byte, error) {
-	formatted := fmt.Sprintf("\"%s\"", t.Format(defaultDateTimeFormat))
+	formatted := fmt.Sprintf("\"%q\"", t.Format(defaultDateTimeFormat))
 	return []byte(formatted), nil
 }
 

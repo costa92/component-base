@@ -1,9 +1,10 @@
 package auth
 
 import (
+	"time"
+
 	"github.com/dgrijalva/jwt-go"
 	"golang.org/x/crypto/bcrypt"
-	"time"
 )
 
 func Encrypt(source string) (string, error) {
@@ -15,7 +16,7 @@ func Compare(hashedPassword, password string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 }
 
-func Sign(secretId, secretKey string, iss, aud string) string {
+func Sign(secretId, secretKey, iss, aud string) string {
 	claims := jwt.MapClaims{
 		"exp": time.Now().Add(time.Minute).Unix(),
 		"iat": time.Now().Unix(),

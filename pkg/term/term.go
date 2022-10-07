@@ -1,20 +1,24 @@
 package term
 
 import (
-	"fmt"
+	"errors"
 	"io"
 
 	"github.com/moby/term"
 )
 
-func TerminalSize(w io.Writer) (int, int, error) {
+var harmlessError = errors.New("given writer is no terminal")
+
+func TerminalSize(w io.Writer) (width, height int, err error) {
 	outFd, isTerminal := term.GetFdInfo(w)
 	if !isTerminal {
-		return 0, 0, fmt.Errorf("given writer is no terminal")
+		return width, height, harmlessError
 	}
 	winsize, err := term.GetWinsize(outFd)
 	if err != nil {
-		return 0, 0, err
+		return width, height, err
 	}
-	return int(winsize.Width), int(winsize.Height), nil
+	width = int(winsize.Width)
+	height = int(winsize.Height)
+	return width, height, nil
 }

@@ -3,8 +3,9 @@ package flag
 import (
 	goflag "flag"
 	"fmt"
-	"github.com/spf13/pflag"
 	"strings"
+
+	"github.com/spf13/pflag"
 )
 
 func WordSepNormalizeFunc(f *pflag.FlagSet, name string) pflag.NormalizedName {

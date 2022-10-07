@@ -3,18 +3,22 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
+	"strings"
+
 	"github.com/gosuri/uitable"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
-	"os"
-	"strings"
 )
 
 const configFlagName = "server"
 
-var cfgFile string
-var age int
+var (
+	cfgFile string
+	age     int
+)
 
+// nolint
 func init() {
 	pflag.StringVarP(&cfgFile, "server", "c", cfgFile, "Read configuration from specified `FILE`, support JSON, TOML, YAML, HCL, or Java properties formats.")
 	pflag.IntVarP(&age, "age", "a", age, "age")
@@ -22,7 +26,7 @@ func init() {
 
 func wordSepNormalizeFunc(_ *pflag.FlagSet, name string) pflag.NormalizedName {
 	if strings.Contains(name, "_") {
-		return pflag.NormalizedName(strings.Replace(name, "_", "-", -1))
+		return pflag.NormalizedName(strings.ReplaceAll(name, "_", "-"))
 	}
 	return pflag.NormalizedName(name)
 }
@@ -38,12 +42,11 @@ func main() {
 	fmt.Println(age)
 	fmt.Println(&age)
 
-
 	viper.SetConfigFile(cfgFile)
-	viper.SetEnvPrefix(strings.Replace(strings.ToUpper(basename), "-", "_", -1))
+	viper.SetEnvPrefix(strings.ReplaceAll(strings.ToUpper(basename), "-", "_"))
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_", "-", "_"))
 
-	if err := viper.ReadInConfig();err != nil{
+	if err := viper.ReadInConfig(); err != nil {
 		_, _ = fmt.Fprintf(os.Stderr, "Error: failed to read configuration file(%s): %v\n", cfgFile, err)
 		os.Exit(1)
 	}
@@ -57,5 +60,4 @@ func main() {
 		}
 		fmt.Printf("%v", table)
 	}
-
 }

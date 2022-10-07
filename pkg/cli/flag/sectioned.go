@@ -3,9 +3,10 @@ package flag
 import (
 	"bytes"
 	"fmt"
-	"github.com/spf13/pflag"
 	"io"
 	"strings"
+
+	"github.com/spf13/pflag"
 )
 
 type NamedFlagSets struct {
@@ -25,6 +26,7 @@ func (nfs *NamedFlagSets) FlagSet(name string) *pflag.FlagSet {
 
 	return nfs.FlagSets[name]
 }
+
 func PrintSections(w io.Writer, fss NamedFlagSets, cols int) {
 	for _, name := range fss.Order {
 		fs := fss.FlagSets[name]

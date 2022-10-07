@@ -5,14 +5,16 @@ import (
 	"fmt"
 )
 
-var inputName = flag.String("name", "CHENJIAN", "Input Your Name.")
-var inputFlagvar int
+var (
+	inputName    = flag.String("name", "CHENJIAN", "Input Your Name.")
+	inputFlagvar int
+)
 
 func Init() {
 	flag.IntVar(&inputFlagvar, "flagname", 1234, "Help")
 }
 
-func main()  {
+func main() {
 	Init()
 	flag.Parse()
 

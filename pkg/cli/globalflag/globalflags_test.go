@@ -2,12 +2,14 @@ package globalflag
 
 import (
 	"flag"
-	cliflag "github.com/costa92/component-base/pkg/cli/flag"
-	"github.com/spf13/pflag"
 	"reflect"
 	"sort"
 	"strings"
 	"testing"
+
+	"github.com/spf13/pflag"
+
+	cliflag "github.com/costa92/component-base/pkg/cli/flag"
 )
 
 func TestAddGlobalFlags(t *testing.T) {
